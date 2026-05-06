@@ -1,0 +1,16 @@
+Source: php-jawira-plantuml-encoding
+Section: php
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends: debhelper-compat (= 13), jq
+Standards-Version: 4.6.2
+Homepage: https://github.com/jawira/plantuml-encoding
+Vcs-Git: https://github.com/Vitexus/php-jawira-plantuml-encoding.git
+Rules-Requires-Root: no
+
+Package: php-jawira-plantuml-encoding
+Architecture: all
+Depends: ${misc:Depends}, php-cli | php, composer
+Description: PlantUML encoding functions for PHP
+ Provides PHP functions to encode and decode PlantUML
+ diagram text for use in URLs.

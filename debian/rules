@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/~.*//')
+PKG_SOURCE  := $(shell jq -r '.name' composer.json)
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+
+override_dh_auto_build:
+
+override_dh_auto_test:
+
+override_dh_install:
+	mkdir -p debian/php-jawira-plantuml-encoding/usr/share/php/Jawira/PlantUmlEncoding
+	cp src/plantuml_functions.php debian/php-jawira-plantuml-encoding/usr/share/php/Jawira/PlantUmlEncoding/
+	install -m 644 debian/autoload.php debian/php-jawira-plantuml-encoding/usr/share/php/Jawira/PlantUmlEncoding/autoload.php
+	sed -i "s|'unknown'|'$(PKG_SOURCE)'|" debian/php-jawira-plantuml-encoding/usr/share/php/Jawira/PlantUmlEncoding/autoload.php
+	sed -i "s|'0.0.0'|'$(PKG_VERSION)'|" debian/php-jawira-plantuml-encoding/usr/share/php/Jawira/PlantUmlEncoding/autoload.php
